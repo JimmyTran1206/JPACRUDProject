@@ -11,6 +11,8 @@ public interface PokemonStatsDAO {
 	
 	public void updatePokemonById(int id, Pokemon p);
 	
+	public int addPokemon (Pokemon p);
+	
 	public Pokemon deletePokemonById(int id);
 	
 	public Integer getMaxHitpoint();

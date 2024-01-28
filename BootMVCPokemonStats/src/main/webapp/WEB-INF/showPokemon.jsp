@@ -176,7 +176,7 @@ label {
 
 								<div class="col">
 									<label for="spriteId" class="form-label">Sprite Id</label> <input
-										type="number" class="form-control" id="spriteId"
+										type="number" class="form-control" id="spriteId" min ="1" max="1017"
 										name="spriteId" value="${pokemon.spriteId}">
 								</div>
 							</div>
@@ -184,8 +184,6 @@ label {
 								<div class="col">
 									<button type="submit" class="btn btn-primary"
 										style="font-size: 20px">Confirm Update</button>
-
-
 
 								</div>
 							</div>

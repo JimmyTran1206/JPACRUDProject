@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.data.PokemonStatsDAO;
 import com.skilldistillery.pokemonstats.entities.Pokemon;
@@ -212,31 +214,26 @@ public class PokemonStatsController {
 		return "showPokemon";
 	}
 
-// UPDATE CONFIRMED
+// UPDATE CONFIRMED- REDIRECT
 	@RequestMapping(path = { "updatePokemonConfirmed.do" }, method = RequestMethod.POST)
-	public String updatePokemonConfirmed(Pokemon p, Model model) {
+	public ModelAndView updatePokemonConfirmed(Pokemon p) {
 		pokeDAO.updatePokemonById(p.getId(), p);
+		ModelAndView mv = new ModelAndView();
+		String redirStr=String.format("redirect:showPokemon.do?id=%d", p.getId());
+		mv.setViewName(redirStr);
+		return mv;
+	}
 
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
-
-		Pokemon pokemon = pokeDAO.findPokemonById(p.getId());
+// addPokemon control path
+// add QUESTIONS
+	@RequestMapping(path = { "addPokemon.do" }, method = RequestMethod.GET)
+	public String addPokemon(Pokemon p, Model model) {
+		int id = pokeDAO.addPokemon(p);
+		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("showNAV", "showPokemon");
 		return "showPokemon";
 	}
-// REDIRECT UPDATE 
+
 
 }

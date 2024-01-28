@@ -82,7 +82,82 @@
 						aria-labelledby="headingThree" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
 							<strong>Enter the pokemon details</strong>
+							<div class="container form-container">
+								<form action="addPokemon.do" method="GET">
+									
+									<div class="row mb-3">
+										<div class="col">
+											<label for="name" class="form-label">Pokemon name</label> <input
+												type="text" class="form-control" id="name" name="name"
+												>
+										</div>
 
+										<div class="col-2"></div>
+
+										<div class="col">
+											<label for="hitpoint" class="form-label">Hit Points</label> <input
+												type="number" class="form-control" id="hitpoint"
+												name="hitpoint" >
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col">
+											<label for="attack" class="form-label">Attack</label> <input
+												type="number" class="form-control" id="attack" name="attack"
+												>
+										</div>
+
+										<div class="col-2"></div>
+
+										<div class="col">
+											<label for="specialAttack" class="form-label">Special
+												Attack</label> <input type="number" class="form-control"
+												id="specialAttack" name="specialAttack"
+												>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col">
+											<label for="defense" class="form-label">Defense</label> <input
+												type="number" class="form-control" id="defense"
+												name="defense" >
+										</div>
+
+										<div class="col-2"></div>
+
+										<div class="col">
+											<label for="specialDefense" class="form-label">Special
+												Attack</label> <input type="number" class="form-control"
+												id="specialDefense" name="specialDefense"
+												>
+										</div>
+									</div>
+
+									<div class="row mb-3">
+										<div class="col">
+											<label for="speed" class="form-label">Speed</label> <input
+												type="number" class="form-control" id="speed" name="speed"
+												>
+										</div>
+
+										<div class="col-2"></div>
+
+										<div class="col">
+											<label for="spriteId" class="form-label">Sprite Id</label> <input
+												type="number" class="form-control" id="spriteId" min="1" max="1017"
+												name="spriteId" >
+										</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col">
+											<button type="submit" class="btn btn-primary"
+												style="font-size: 20px">Add Pokemon to collection</button>
+
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -87,5 +87,12 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		pokemon.setSpriteId(p.getSpriteId());
 	}
 
+	@Override
+	public int addPokemon(Pokemon p) {
+		em.persist(p);
+		em.flush();
+		return p.getId();
+	}
+
 
 }
