@@ -25,7 +25,10 @@ public class PokemonStatsController {
 	public String find(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
-
+		Pokemon strongestPokemon = pokeDAO.findStrongestPokemon();
+		Pokemon weakestPokemon = pokeDAO.findWeakestPokemon();
+		model.addAttribute("strongestPokemon", strongestPokemon);
+		model.addAttribute("weakestPokemon", weakestPokemon);
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "");
 		model.addAttribute("findPokemonShow", "show");
@@ -50,7 +53,10 @@ public class PokemonStatsController {
 	public String collection(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
-
+		Pokemon strongestPokemon = pokeDAO.findStrongestPokemon();
+		Pokemon weakestPokemon = pokeDAO.findWeakestPokemon();
+		model.addAttribute("strongestPokemon", strongestPokemon);
+		model.addAttribute("weakestPokemon", weakestPokemon);
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "collapsed");
 		model.addAttribute("findPokemonShow", "");
@@ -74,6 +80,11 @@ public class PokemonStatsController {
 	public String add(Model model, @RequestParam("spriteIdHomeAdd") int spriteId) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
+		Pokemon strongestPokemon = pokeDAO.findStrongestPokemon();
+		Pokemon weakestPokemon = pokeDAO.findWeakestPokemon();
+		model.addAttribute("strongestPokemon", strongestPokemon);
+		model.addAttribute("weakestPokemon", weakestPokemon);
+
 		model.addAttribute("spriteIdHomeAdd", spriteId);
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "collapsed");
@@ -98,6 +109,10 @@ public class PokemonStatsController {
 	public String update(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
+		Pokemon strongestPokemon = pokeDAO.findStrongestPokemon();
+		Pokemon weakestPokemon = pokeDAO.findWeakestPokemon();
+		model.addAttribute("strongestPokemon", strongestPokemon);
+		model.addAttribute("weakestPokemon", weakestPokemon);
 
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "collapsed");
@@ -122,6 +137,10 @@ public class PokemonStatsController {
 	public String delete(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
+		Pokemon strongestPokemon = pokeDAO.findStrongestPokemon();
+		Pokemon weakestPokemon = pokeDAO.findWeakestPokemon();
+		model.addAttribute("strongestPokemon", strongestPokemon);
+		model.addAttribute("weakestPokemon", weakestPokemon);
 
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "collapsed");
@@ -145,24 +164,28 @@ public class PokemonStatsController {
 //showPokemon control path from find and collection
 	@RequestMapping(path = { "showPokemon.do" }, method = RequestMethod.GET)
 	public String showPokemon(Model model, @RequestParam("id") int id) {
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		int maxId = pokeDAO.getMaxId();
-		int minId = pokeDAO.getMinId();
-		model.addAttribute("maxId", maxId);
-		model.addAttribute("minId", minId);
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
+		try {
+			// BEGIND Finding and adding max attributes
+			int maxHitPoint = pokeDAO.getMaxHitpoint();
+			int maxAttack = pokeDAO.getMaxAttack();
+			int maxDefense = pokeDAO.getMaxDefense();
+			int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+			int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+			int maxSpeed = pokeDAO.getMaxSpeed();
+			int maxId = pokeDAO.getMaxId();
+			int minId = pokeDAO.getMinId();
+			model.addAttribute("maxId", maxId);
+			model.addAttribute("minId", minId);
+			model.addAttribute("maxHitPoint", maxHitPoint);
+			model.addAttribute("maxAttack", maxAttack);
+			model.addAttribute("maxDefense", maxDefense);
+			model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+			model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+			model.addAttribute("maxSpeed", maxSpeed);
+			// END finding and adding max attributes
+		} catch (Exception e) {
+
+		}
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		if (pokemon != null) {
@@ -181,24 +204,28 @@ public class PokemonStatsController {
 // DELETE QUESTION
 	@RequestMapping(path = { "deletePokemon.do" }, method = RequestMethod.GET)
 	public String deletePokemon(Model model, @RequestParam("id") int id) {
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		int maxId = pokeDAO.getMaxId();
-		int minId = pokeDAO.getMinId();
-		model.addAttribute("maxId", maxId);
-		model.addAttribute("minId", minId);
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
+		try {
+			// BEGIND Finding and adding max attributes
+			int maxHitPoint = pokeDAO.getMaxHitpoint();
+			int maxAttack = pokeDAO.getMaxAttack();
+			int maxDefense = pokeDAO.getMaxDefense();
+			int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+			int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+			int maxSpeed = pokeDAO.getMaxSpeed();
+			int maxId = pokeDAO.getMaxId();
+			int minId = pokeDAO.getMinId();
+			model.addAttribute("maxId", maxId);
+			model.addAttribute("minId", minId);
+			model.addAttribute("maxHitPoint", maxHitPoint);
+			model.addAttribute("maxAttack", maxAttack);
+			model.addAttribute("maxDefense", maxDefense);
+			model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+			model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+			model.addAttribute("maxSpeed", maxSpeed);
+			// END finding and adding max attributes
+		} catch (Exception e) {
+
+		}
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		if (pokemon != null) {
@@ -254,24 +281,28 @@ public class PokemonStatsController {
 		int id = pokeDAO.addPokemon(p);
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		int maxId = pokeDAO.getMaxId();
-		int minId = pokeDAO.getMinId();
-		model.addAttribute("maxId", maxId);
-		model.addAttribute("minId", minId);
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
+		try {
+			// BEGIND Finding and adding max attributes
+			int maxHitPoint = pokeDAO.getMaxHitpoint();
+			int maxAttack = pokeDAO.getMaxAttack();
+			int maxDefense = pokeDAO.getMaxDefense();
+			int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+			int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+			int maxSpeed = pokeDAO.getMaxSpeed();
+			int maxId = pokeDAO.getMaxId();
+			int minId = pokeDAO.getMinId();
+			model.addAttribute("maxId", maxId);
+			model.addAttribute("minId", minId);
+			model.addAttribute("maxHitPoint", maxHitPoint);
+			model.addAttribute("maxAttack", maxAttack);
+			model.addAttribute("maxDefense", maxDefense);
+			model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+			model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+			model.addAttribute("maxSpeed", maxSpeed);
+			// END finding and adding max attributes
+		} catch (Exception e) {
+
+		}
 
 		model.addAttribute("spriteId", pokemon.getSpriteId());
 		model.addAttribute("pokemon", pokemon);
@@ -295,24 +326,28 @@ public class PokemonStatsController {
 	// show next Pokemon
 	@RequestMapping(path = { "showNextPokemon.do" }, method = RequestMethod.GET)
 	public String showNextPokemon(Model model, @RequestParam("id") int id) {
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		int maxId = pokeDAO.getMaxId();
-		int minId = pokeDAO.getMinId();
-		model.addAttribute("maxId", maxId);
-		model.addAttribute("minId", minId);
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
+		try {
+			// BEGIND Finding and adding max attributes
+			int maxHitPoint = pokeDAO.getMaxHitpoint();
+			int maxAttack = pokeDAO.getMaxAttack();
+			int maxDefense = pokeDAO.getMaxDefense();
+			int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+			int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+			int maxSpeed = pokeDAO.getMaxSpeed();
+			int maxId = pokeDAO.getMaxId();
+			int minId = pokeDAO.getMinId();
+			model.addAttribute("maxId", maxId);
+			model.addAttribute("minId", minId);
+			model.addAttribute("maxHitPoint", maxHitPoint);
+			model.addAttribute("maxAttack", maxAttack);
+			model.addAttribute("maxDefense", maxDefense);
+			model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+			model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+			model.addAttribute("maxSpeed", maxSpeed);
+			// END finding and adding max attributes
+		} catch (Exception e) {
+
+		}
 
 		Pokemon pokemon = pokeDAO.findNextPokemon(id);
 		model.addAttribute("spriteId", pokemon.getSpriteId());
@@ -320,27 +355,32 @@ public class PokemonStatsController {
 		model.addAttribute("showNAV", "showPokemon");
 		return "showPokemon";
 	}
+
 	// show previous Pokemon
 	@RequestMapping(path = { "showPreviousPokemon.do" }, method = RequestMethod.GET)
 	public String showPreviousPokemon(Model model, @RequestParam("id") int id) {
-		// BEGIND Finding and adding max attributes
-		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack = pokeDAO.getMaxAttack();
-		int maxDefense = pokeDAO.getMaxDefense();
-		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
-		int maxSpeed = pokeDAO.getMaxSpeed();
-		int maxId = pokeDAO.getMaxId();
-		int minId = pokeDAO.getMinId();
-		model.addAttribute("maxId", maxId);
-		model.addAttribute("minId", minId);
-		model.addAttribute("maxHitPoint", maxHitPoint);
-		model.addAttribute("maxAttack", maxAttack);
-		model.addAttribute("maxDefense", maxDefense);
-		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
-		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
-		model.addAttribute("maxSpeed", maxSpeed);
-		// END finding and adding max attributes
+		try {
+			// BEGIND Finding and adding max attributes
+			int maxHitPoint = pokeDAO.getMaxHitpoint();
+			int maxAttack = pokeDAO.getMaxAttack();
+			int maxDefense = pokeDAO.getMaxDefense();
+			int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+			int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+			int maxSpeed = pokeDAO.getMaxSpeed();
+			int maxId = pokeDAO.getMaxId();
+			int minId = pokeDAO.getMinId();
+			model.addAttribute("maxId", maxId);
+			model.addAttribute("minId", minId);
+			model.addAttribute("maxHitPoint", maxHitPoint);
+			model.addAttribute("maxAttack", maxAttack);
+			model.addAttribute("maxDefense", maxDefense);
+			model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+			model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+			model.addAttribute("maxSpeed", maxSpeed);
+			// END finding and adding max attributes
+		} catch (Exception e) {
+
+		}
 
 		Pokemon pokemon = pokeDAO.findPreviousPokemon(id);
 		model.addAttribute("spriteId", pokemon.getSpriteId());

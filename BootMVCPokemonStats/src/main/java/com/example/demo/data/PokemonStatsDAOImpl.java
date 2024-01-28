@@ -121,11 +121,39 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 	public Pokemon findPreviousPokemon(int id) {
 		String jpql = "SELECT pokemon FROM Pokemon pokemon WHERE pokemon.id < :id ";
 		List<Pokemon> pokemonList = em.createQuery(jpql, Pokemon.class).setParameter("id", id).getResultList();
-		Pokemon pokemon= pokemonList.get(pokemonList.size()-1);
+		Pokemon pokemon = pokemonList.get(pokemonList.size() - 1);
 		if (pokemon == null) {
 			return findPokemonById(id);
 		} else {
 			return pokemon;
+		}
+	}
+
+	@Override
+	public Pokemon findStrongestPokemon() {
+		String jpql = "SELECT pokemon FROM Pokemon pokemon"
+				+ " WHERE pokemon.hitpoint + pokemon.attack + pokemon.defense "
+				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed "
+				+ " = (SELECT MAX(pokemon.hitpoint + pokemon.attack + pokemon.defense "
+				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed) " + " FROM Pokemon pokemon)";
+		try {
+			return em.createQuery(jpql, Pokemon.class).getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Pokemon findWeakestPokemon() {
+		String jpql = "SELECT pokemon FROM Pokemon pokemon"
+				+ " WHERE pokemon.hitpoint + pokemon.attack + pokemon.defense "
+				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed "
+				+ " = (SELECT MIN(pokemon.hitpoint + pokemon.attack + pokemon.defense "
+				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed) " + " FROM Pokemon pokemon)";
+		try {
+			return em.createQuery(jpql, Pokemon.class).getSingleResult();
+		} catch (Exception e) {
+			return null;
 		}
 	}
 }

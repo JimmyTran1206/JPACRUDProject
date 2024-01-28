@@ -21,9 +21,10 @@ div.container {
 	margin: 36px auto;
 }
 
-h1 {
+h1, h2 {
 	font-family: 'Pokemon Solid', sans-serif;
 	color: #c0a50c;
+	text-align: center;
 }
 
 div.row {
@@ -60,8 +61,8 @@ li {
 
 li:hover {
 	cursor: pointer;
-	background: linear-gradient(to right, #290202, #6e0606); position :
-	relative;
+	background: linear-gradient(to right, #290202, #6e0606);
+	position: relative;
 	top: -2px;
 	left: -2px;
 	position: relative;
@@ -124,14 +125,36 @@ a:hover {
 						class="accordion-collapse collapse ${collectionPokemonShow}"
 						aria-labelledby="headingTwo" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
-							<ul>
-								<c:forEach var="pokemon" items="${pokemonList}">
 
-									<li><img
-										src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.spriteId}.png"
-										width="50px"><a href="showPokemon.do?id=${pokemon.id}">${pokemon.name}</a></li>
-								</c:forEach>
-							</ul>
+							<c:choose>
+								<c:when test="${strongestPokemon==null||weakestPokemon==null}">
+									<h2>
+										There is no pokemon in your collection. Lets <a
+											href=add.do?spriteIdHomeAdd=1>catch a pokemon</a>
+									</h2>
+								</c:when>
+								<c:otherwise>
+									<ul>
+										<li id="strongest-pokemon"><img src="questionMark.jpg"
+											width="50px"><a
+											href="showPokemon.do?id=${strongestPokemon.id}">Strongest
+												Pokemon</a></li>
+										<li id="weakesk-pokemon"><img src="questionMark.jpg"
+											width="50px"><a
+											href="showPokemon.do?id=${weakestPokemon.id}">Weakest
+												Pokemon</a></li>
+										<c:forEach var="pokemon" items="${pokemonList}">
+											<li><img
+												src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.spriteId}.png"
+												width="50px"><a href="showPokemon.do?id=${pokemon.id}">${pokemon.name}</a></li>
+										</c:forEach>
+									</ul>
+								</c:otherwise>
+							</c:choose>
+
+
+
+
 						</div>
 					</div>
 				</div>
@@ -162,7 +185,8 @@ a:hover {
 												value="${spriteIdHomeAdd}">
 											<div id="spriteIdHelp" class="form-text"
 												style="font-size: 12px;">
-												<a href="showSpriteHomeAdd.do">Available Pokemon Sprites</a>
+												<a href="showSpriteHomeAdd.do">🌪️🐉Lets catch a
+													pokemon🌊🐟</a>
 											</div>
 										</div>
 
@@ -171,7 +195,7 @@ a:hover {
 										<div class="col">
 											<label for="hitpoint" class="form-label">Hit Points</label> <input
 												type="number" class="form-control" id="hitpoint" min="0"
-												name="hitpoint"  required>
+												name="hitpoint" required>
 										</div>
 									</div>
 									<div class="row mb-3">

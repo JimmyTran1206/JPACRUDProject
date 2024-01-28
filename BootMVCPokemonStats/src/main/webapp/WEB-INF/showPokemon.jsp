@@ -229,12 +229,12 @@ nav a:click, button:click {
 							<div class="col">
 								<nav>
 									<c:if test="${pokemon.id > minId}">
-										<a href="showPreviousPokemon.do?id=${pokemon.id}">⬅️Previous
+										<a href="showPreviousPokemon.do?id=${pokemon.id}">⬅️ Previous
 											Pokemon</a>
 									</c:if>
 									<c:if test="${pokemon.id < maxId}">
 									<a href="showNextPokemon.do?id=${pokemon.id}">Next
-										Pokemon➡️</a>
+										Pokemon ➡️</a>
 									</c:if>
 
 								</nav>
@@ -343,8 +343,7 @@ nav a:click, button:click {
 										max="1017" name="spriteId" value="${spriteId}" required>
 									<div id="spriteIdHelp" class="form-text"
 										style="font-size: 12px;">
-										<a href="showSpriteShowPokeUpdate.do?pokemonId=${pokemon.id}">Available
-											Pokemon Sprites</a>
+										<a href="showSpriteShowPokeUpdate.do?pokemonId=${pokemon.id}">📜Glance at PokeSroll📜</a>
 									</div>
 
 								</div>

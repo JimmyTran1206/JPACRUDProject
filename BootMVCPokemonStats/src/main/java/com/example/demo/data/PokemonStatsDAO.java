@@ -18,6 +18,9 @@ public interface PokemonStatsDAO {
 	public Pokemon findNextPokemon(int id);
 	public Pokemon findPreviousPokemon(int id);
 	
+	public Pokemon findStrongestPokemon();
+	public Pokemon findWeakestPokemon();
+	
 	public Integer getMaxHitpoint();
 	public Integer getMaxAttack();
 	public Integer getMaxDefense();
