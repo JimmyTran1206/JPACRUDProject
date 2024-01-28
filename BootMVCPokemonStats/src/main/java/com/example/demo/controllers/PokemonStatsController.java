@@ -161,6 +161,11 @@ public class PokemonStatsController {
 		// END finding and adding max attributes
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		if (pokemon != null) {
+			model.addAttribute("spriteId", pokemon.getSpriteId());
+		} else {
+			model.addAttribute("spriteId", 0);
+		}
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("id", id);
 
@@ -188,6 +193,11 @@ public class PokemonStatsController {
 		// END finding and adding max attributes
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		if (pokemon != null) {
+			model.addAttribute("spriteId", pokemon.getSpriteId());
+		} else {
+			model.addAttribute("spriteId", 0);
+		}
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("id", id);
 
@@ -206,12 +216,13 @@ public class PokemonStatsController {
 // updatePokemon control path
 // Update QUESTION AND FORM
 	@RequestMapping(path = { "updatePokemon.do" }, method = RequestMethod.GET)
-	public String updatePokemon(Model model, @RequestParam("id") int id, @RequestParam("spriteIdFromList") int spriteIdFromList) {
+	public String updatePokemon(Model model, @RequestParam("id") int id,
+			@RequestParam("spriteIdFromList") int spriteIdFromList) {
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		model.addAttribute("pokemon", pokemon);
-		if(spriteIdFromList==0&&pokemon!=null) {
+		if (spriteIdFromList == 0 && pokemon != null) {
 			model.addAttribute("spriteId", pokemon.getSpriteId());
-		}else {
+		} else {
 			model.addAttribute("spriteId", spriteIdFromList);
 		}
 		model.addAttribute("id", id);
@@ -224,7 +235,7 @@ public class PokemonStatsController {
 	public ModelAndView updatePokemonConfirmed(Pokemon p) {
 		pokeDAO.updatePokemonById(p.getId(), p);
 		ModelAndView mv = new ModelAndView();
-		String redirStr=String.format("redirect:showPokemon.do?id=%d", p.getId());
+		String redirStr = String.format("redirect:showPokemon.do?id=%d", p.getId());
 		mv.setViewName(redirStr);
 		return mv;
 	}
@@ -234,6 +245,23 @@ public class PokemonStatsController {
 	public String addPokemon(Pokemon p, Model model) {
 		int id = pokeDAO.addPokemon(p);
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+
+		// BEGIND Finding and adding max attributes
+		int maxHitPoint = pokeDAO.getMaxHitpoint();
+		int maxAttack = pokeDAO.getMaxAttack();
+		int maxDefense = pokeDAO.getMaxDefense();
+		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+		int maxSpeed = pokeDAO.getMaxSpeed();
+		model.addAttribute("maxHitPoint", maxHitPoint);
+		model.addAttribute("maxAttack", maxAttack);
+		model.addAttribute("maxDefense", maxDefense);
+		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+		model.addAttribute("maxSpeed", maxSpeed);
+		// END finding and adding max attributes
+
+		model.addAttribute("spriteId", pokemon.getSpriteId());
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("showNAV", "showPokemon");
 		return "showPokemon";
@@ -244,8 +272,8 @@ public class PokemonStatsController {
 	public String showSpriteHomeAdd() {
 		return "spriteListHomeAdd";
 	}
-	
-	//show Sprite ShowPokemon Update
+
+	// show Sprite ShowPokemon Update
 	@RequestMapping(path = { "showSpriteShowPokeUpdate.do" }, method = RequestMethod.GET)
 	public String showSpriteShowPokeUpdate(Model model, @RequestParam("pokemonId") int pokemonId) {
 		model.addAttribute("pokemonId", pokemonId);

@@ -12,8 +12,77 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
+<link href="https://fonts.cdnfonts.com/css/pokemon-solid"
+	rel="stylesheet">
+
+<style>
+div.container {
+	max-width: 800px;
+	margin: 36px auto;
+}
+
+h1 {
+	font-family: 'Pokemon Solid', sans-serif;
+	color: #c0a50c;
+}
+
+div.row {
+	font-size: 20px;
+}
+
+#background-video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: fill;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -1;
+	opacity: 0.5;
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+li {
+	margin: 2px;
+	padding: 2px;
+	border-radius: 3px;
+	background: linear-gradient(to right, #3b9928, #26bd08);
+	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+li:hover {
+	cursor: pointer;
+	background: linear-gradient(to right, #290202, #6e0606); position :
+	relative;
+	top: -2px;
+	left: -2px;
+	position: relative;
+	position: relative
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	color: #c0a50c;
+}
+</style>
 </head>
 <body>
+	<!-- The video -->
+	<video autoplay muted loop id="background-video">
+		<source src="homeBackgroundVideo.mp4" type="video/mp4">
+	</video>
+	<!-- The video -->
 	<div class="container">
 		<div class="row">
 			<h1>Welcome to Your Pokedex Info</h1>
@@ -35,7 +104,7 @@
 						<div class="accordion-body">
 							<strong>Enter a pokemon id to find</strong>
 							<form action="showPokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required/> <input
+								Pokemon ID: <input type="number" name="id" required /> <input
 									type="submit" value="Show Pokemon" />
 							</form>
 						</div>
@@ -60,8 +129,7 @@
 
 									<li><img
 										src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.spriteId}.png"
-										width="50px"><a
-										href="showPokemon.do?id=${pokemon.id}">${pokemon.name}</a></li>
+										width="50px"><a href="showPokemon.do?id=${pokemon.id}">${pokemon.name}</a></li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -86,23 +154,31 @@
 								<form action="addPokemon.do" method="GET">
 
 									<div class="row mb-3">
+
 										<div class="col">
-											<label for="name" class="form-label">Pokemon name</label> <input
-												type="text" class="form-control" id="name" name="name">
+											<label for="spriteId" class="form-label">Sprite Id*</label> <input
+												type="number" class="form-control" id="spriteId" min="1"
+												max="1017" name="spriteId" required
+												value="${spriteIdHomeAdd}">
+											<div id="spriteIdHelp" class="form-text"
+												style="font-size: 12px;">
+												<a href="showSpriteHomeAdd.do">Available Pokemon Sprites</a>
+											</div>
 										</div>
 
 										<div class="col-2"></div>
 
 										<div class="col">
 											<label for="hitpoint" class="form-label">Hit Points</label> <input
-												type="number" class="form-control" id="hitpoint"
+												type="number" class="form-control" id="hitpoint" min="0"
 												name="hitpoint">
 										</div>
 									</div>
 									<div class="row mb-3">
 										<div class="col">
 											<label for="attack" class="form-label">Attack</label> <input
-												type="number" class="form-control" id="attack" name="attack">
+												type="number" class="form-control" id="attack" min="0"
+												name="attack">
 										</div>
 
 										<div class="col-2"></div>
@@ -110,14 +186,14 @@
 										<div class="col">
 											<label for="specialAttack" class="form-label">Special
 												Attack</label> <input type="number" class="form-control"
-												id="specialAttack" name="specialAttack">
+												id="specialAttack" min="0" name="specialAttack">
 										</div>
 									</div>
 
 									<div class="row mb-3">
 										<div class="col">
 											<label for="defense" class="form-label">Defense</label> <input
-												type="number" class="form-control" id="defense"
+												type="number" class="form-control" id="defense" min="0"
 												name="defense">
 										</div>
 
@@ -126,24 +202,25 @@
 										<div class="col">
 											<label for="specialDefense" class="form-label">Special
 												Attack</label> <input type="number" class="form-control"
-												id="specialDefense" name="specialDefense">
+												id="specialDefense" min="0" name="specialDefense">
 										</div>
 									</div>
 
 									<div class="row mb-3">
 										<div class="col">
 											<label for="speed" class="form-label">Speed</label> <input
-												type="number" class="form-control" id="speed" name="speed">
+												type="number" class="form-control" id="speed" min="0"
+												name="speed">
 										</div>
 
 										<div class="col-2"></div>
 
 										<div class="col">
-											<label for="spriteId" class="form-label">Sprite Id</label> <input
-												type="number" class="form-control" id="spriteId" min="1"
-												max="1017" name="spriteId" required value="${spriteIdHomeAdd}">
-												    <div id="spriteIdHelp" class="form-text" style= "font-size: 12px;"><a href="showSpriteHomeAdd.do">Available Pokemon Sprites</a></div>
+											<label for="name" class="form-label">Pokemon name*</label> <input
+												type="text" class="form-control" id="name" name="name"
+												required>
 										</div>
+
 									</div>
 									<div class="row mb-3">
 										<div class="col">
@@ -173,10 +250,10 @@
 						<div class="accordion-body">
 							<strong>Enter a pokemon id to update</strong>
 							<form action="updatePokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required />
-								<input type="number" name="spriteIdFromList" value="0" style="display:none;" />
-								 <input
-									type="submit" value="Update Pokemon" />
+								Pokemon ID: <input type="number" name="id" required /> <input
+									type="number" name="spriteIdFromList" value="0"
+									style="display: none;" /> <input type="submit"
+									value="Update Pokemon" />
 							</form>
 						</div>
 					</div>
@@ -197,7 +274,7 @@
 						<div class="accordion-body">
 							<strong>Enter a pokemon id for deletion</strong>
 							<form action="deletePokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required/> <input
+								Pokemon ID: <input type="number" name="id" required /> <input
 									type="submit" value="Delete Pokemon" />
 							</form>
 
@@ -206,7 +283,7 @@
 				</div>
 				<!-- Accordion END Create all Pokemon by ID -->
 
-				
+
 			</div>
 
 		</div>
