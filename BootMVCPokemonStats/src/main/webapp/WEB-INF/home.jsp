@@ -103,7 +103,7 @@
 							<strong>Enter a pokemon id to update</strong>
 							<form action="updatePokemon.do" method="GET">
 								Pokemon ID: <input type="number" name="id" /> <input
-									type="submit" value="Show Pokemon" />
+									type="submit" value="Update Pokemon" />
 							</form>
 						</div>
 					</div>
@@ -125,7 +125,7 @@
 							<strong>Enter a pokemon id for deletion</strong>
 							<form action="deletePokemon.do" method="GET">
 								Pokemon ID: <input type="number" name="id" /> <input
-									type="submit" value="Show Pokemon" />
+									type="submit" value="Delete Pokemon" />
 							</form>
 
 						</div>
@@ -136,12 +136,9 @@
 
 			</div>
 
-
 		</div>
 
 	</div>
-
-
 
 
 	<script

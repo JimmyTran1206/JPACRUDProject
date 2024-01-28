@@ -145,11 +145,11 @@ public class PokemonStatsController {
 	public String showPokemon(Model model, @RequestParam("id") int id) {
 		// BEGIND Finding and adding max attributes
 		int maxHitPoint = pokeDAO.getMaxHitpoint();
-		int maxAttack=pokeDAO.getMaxAttack();
-		int maxDefense=pokeDAO.getMaxDefense();
-		int maxSpecialAttack=pokeDAO.getMaxSpecialAttack();
-		int maxSpecialDefense=pokeDAO.getMaxSpecialDefense();
-		int maxSpeed=pokeDAO.getMaxSpeed();
+		int maxAttack = pokeDAO.getMaxAttack();
+		int maxDefense = pokeDAO.getMaxDefense();
+		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+		int maxSpeed = pokeDAO.getMaxSpeed();
 		model.addAttribute("maxHitPoint", maxHitPoint);
 		model.addAttribute("maxAttack", maxAttack);
 		model.addAttribute("maxDefense", maxDefense);
@@ -157,16 +157,86 @@ public class PokemonStatsController {
 		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
 		model.addAttribute("maxSpeed", maxSpeed);
 		// END finding and adding max attributes
-		
+
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("id", id);
-		
-		model.addAttribute("showNAV","showPokemon");
+
+		model.addAttribute("showNAV", "showPokemon");
 		return "showPokemon";
 	}
-	
-// deletePokemon control path
 
+// deletePokemon control path
+// DELETE QUESTION
+	@RequestMapping(path = { "deletePokemon.do" }, method = RequestMethod.GET)
+	public String deletePokemon(Model model, @RequestParam("id") int id) {
+		// BEGIND Finding and adding max attributes
+		int maxHitPoint = pokeDAO.getMaxHitpoint();
+		int maxAttack = pokeDAO.getMaxAttack();
+		int maxDefense = pokeDAO.getMaxDefense();
+		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+		int maxSpeed = pokeDAO.getMaxSpeed();
+		model.addAttribute("maxHitPoint", maxHitPoint);
+		model.addAttribute("maxAttack", maxAttack);
+		model.addAttribute("maxDefense", maxDefense);
+		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+		model.addAttribute("maxSpeed", maxSpeed);
+		// END finding and adding max attributes
+
+		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		model.addAttribute("pokemon", pokemon);
+		model.addAttribute("id", id);
+
+		model.addAttribute("showNAV", "deletePokemon");
+		return "showPokemon";
+	}
+
+// DELETE CONFIRMED
+	@RequestMapping(path = { "deletePokemonConfirmed.do" }, method = RequestMethod.GET)
+	public String deletePokemonConfirmed(Model model, @RequestParam("id") int id) {
+		Pokemon pokemon = pokeDAO.deletePokemonById(id);
+		model.addAttribute("pokemon", pokemon);
+		return "deleteConfirmation";
+	}
+
+// updatePokemon control path
+// Update QUESTION AND FORM
+	@RequestMapping(path = { "updatePokemon.do" }, method = RequestMethod.GET)
+	public String updatePokemon(Model model, @RequestParam("id") int id) {
+		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		model.addAttribute("pokemon", pokemon);
+		model.addAttribute("id", id);
+		model.addAttribute("showNAV", "updatePokemon");
+		return "showPokemon";
+	}
+
+// UPDATE CONFIRMED
+	@RequestMapping(path = { "updatePokemonConfirmed.do" }, method = RequestMethod.POST)
+	public String updatePokemonConfirmed(Pokemon p, Model model) {
+		pokeDAO.updatePokemonById(p.getId(), p);
+
+		// BEGIND Finding and adding max attributes
+		int maxHitPoint = pokeDAO.getMaxHitpoint();
+		int maxAttack = pokeDAO.getMaxAttack();
+		int maxDefense = pokeDAO.getMaxDefense();
+		int maxSpecialAttack = pokeDAO.getMaxSpecialAttack();
+		int maxSpecialDefense = pokeDAO.getMaxSpecialDefense();
+		int maxSpeed = pokeDAO.getMaxSpeed();
+		model.addAttribute("maxHitPoint", maxHitPoint);
+		model.addAttribute("maxAttack", maxAttack);
+		model.addAttribute("maxDefense", maxDefense);
+		model.addAttribute("maxSpecialAttack", maxSpecialAttack);
+		model.addAttribute("maxSpecialDefense", maxSpecialDefense);
+		model.addAttribute("maxSpeed", maxSpeed);
+		// END finding and adding max attributes
+
+		Pokemon pokemon = pokeDAO.findPokemonById(p.getId());
+		model.addAttribute("pokemon", pokemon);
+		model.addAttribute("showNAV", "showPokemon");
+		return "showPokemon";
+	}
+// REDIRECT UPDATE 
 
 }

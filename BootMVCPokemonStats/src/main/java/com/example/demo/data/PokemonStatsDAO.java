@@ -9,6 +9,10 @@ public interface PokemonStatsDAO {
 
 	public List<Pokemon> findAllPokemon();
 	
+	public void updatePokemonById(int id, Pokemon p);
+	
+	public Pokemon deletePokemonById(int id);
+	
 	public Integer getMaxHitpoint();
 	public Integer getMaxAttack();
 	public Integer getMaxDefense();

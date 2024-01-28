@@ -63,6 +63,29 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		return (Integer) em.createQuery(jpql, Integer.class).getSingleResult();
 	}
 
-	
+	@Override
+	public Pokemon deletePokemonById(int id) {
+		
+			Pokemon pokemon = em.find(Pokemon.class, id);
+			if(pokemon==null) {
+				return null;
+			}
+			em.remove(pokemon); // performs the deletion on the managed entity
+			em.flush();
+			return pokemon;
+	}
+
+	@Override
+	public void updatePokemonById(int id, Pokemon p) {
+		Pokemon pokemon= em.find(Pokemon.class, id);
+		pokemon.setHitpoint(p.getHitpoint());
+		pokemon.setAttack(p.getAttack());
+		pokemon.setDefense(p.getDefense());
+		pokemon.setSpecialAttack(p.getSpecialAttack());
+		pokemon.setSpecialDefense(p.getSpecialDefense());
+		pokemon.setSpeed(p.getSpeed());
+		pokemon.setSpriteId(p.getSpriteId());
+	}
+
 
 }
