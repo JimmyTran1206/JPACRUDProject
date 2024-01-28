@@ -161,6 +161,7 @@ public class PokemonStatsController {
 		// END finding and adding max attributes
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		model.addAttribute("spriteId", pokemon.getSpriteId());
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("id", id);
 
@@ -188,6 +189,7 @@ public class PokemonStatsController {
 		// END finding and adding max attributes
 
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		model.addAttribute("spriteId", pokemon.getSpriteId());
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("id", id);
 
@@ -234,6 +236,7 @@ public class PokemonStatsController {
 	public String addPokemon(Pokemon p, Model model) {
 		int id = pokeDAO.addPokemon(p);
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
+		model.addAttribute("spriteId", pokemon.getSpriteId());
 		model.addAttribute("pokemon", pokemon);
 		model.addAttribute("showNAV", "showPokemon");
 		return "showPokemon";
