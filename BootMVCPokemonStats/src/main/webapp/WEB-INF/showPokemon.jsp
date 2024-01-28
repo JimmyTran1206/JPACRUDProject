@@ -52,7 +52,7 @@ p, form {
 
 nav {
 	display: flex;
-	justify-content:space-between;
+	justify-content: space-between;
 	margin-top: 20px
 }
 
@@ -65,7 +65,6 @@ nav a, button {
 	color: #c0a50c;
 	border-radius: 6px;
 	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
-	
 }
 
 nav a:hover, button:hover {
@@ -225,6 +224,22 @@ nav a:click, button:click {
 					</c:if>
 
 					<c:if test="${showNAV=='showPokemon'}">
+
+						<div class="row">
+							<div class="col">
+								<nav>
+									<c:if test="${pokemon.id > minId}">
+										<a href="showPreviousPokemon.do?id=${pokemon.id}">⬅️Previous
+											Pokemon</a>
+									</c:if>
+									<c:if test="${pokemon.id < maxId}">
+									<a href="showNextPokemon.do?id=${pokemon.id}">Next
+										Pokemon➡️</a>
+									</c:if>
+
+								</nav>
+							</div>
+						</div>
 						<div class="row">
 							<div class="col">
 								<nav>
@@ -334,11 +349,12 @@ nav a:click, button:click {
 
 								</div>
 							</div>
-							
+
 							<div class="row mb-3">
 								<div class="col">
 									<button type="submit" class="btn btn-primary"
-										style="font-size: 20px; color:#c0a50c; padding:10px; ">Confirm Update</button>
+										style="font-size: 20px; color: #c0a50c; padding: 10px;">Confirm
+										Update</button>
 								</div>
 							</div>
 						</form>

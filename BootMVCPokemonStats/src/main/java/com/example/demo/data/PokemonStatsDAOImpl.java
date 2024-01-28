@@ -62,7 +62,7 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		String jpql = "SELECT MAX(pokemon.speed) FROM Pokemon pokemon";
 		return (Integer) em.createQuery(jpql, Integer.class).getSingleResult();
 	}
-	
+
 	@Override
 	public Integer getMaxId() {
 		String jpql = "SELECT MAX(pokemon.id) FROM Pokemon pokemon";
@@ -77,19 +77,19 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 
 	@Override
 	public Pokemon deletePokemonById(int id) {
-		
-			Pokemon pokemon = em.find(Pokemon.class, id);
-			if(pokemon==null) {
-				return null;
-			}
-			em.remove(pokemon); // performs the deletion on the managed entity
-			em.flush();
-			return pokemon;
+
+		Pokemon pokemon = em.find(Pokemon.class, id);
+		if (pokemon == null) {
+			return null;
+		}
+		em.remove(pokemon); // performs the deletion on the managed entity
+		em.flush();
+		return pokemon;
 	}
 
 	@Override
 	public void updatePokemonById(int id, Pokemon p) {
-		Pokemon pokemon= em.find(Pokemon.class, id);
+		Pokemon pokemon = em.find(Pokemon.class, id);
 		pokemon.setHitpoint(p.getHitpoint());
 		pokemon.setAttack(p.getAttack());
 		pokemon.setDefense(p.getDefense());
@@ -106,7 +106,26 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		return p.getId();
 	}
 
+	@Override
+	public Pokemon findNextPokemon(int id) {
+		String jpql = "SELECT pokemon FROM Pokemon pokemon WHERE pokemon.id > :id ";
+		Pokemon pokemon = em.createQuery(jpql, Pokemon.class).setParameter("id", id).getResultList().get(0);
+		if (pokemon == null) {
+			return findPokemonById(id);
+		} else {
+			return pokemon;
+		}
+	}
 
-
-
+	@Override
+	public Pokemon findPreviousPokemon(int id) {
+		String jpql = "SELECT pokemon FROM Pokemon pokemon WHERE pokemon.id < :id ";
+		List<Pokemon> pokemonList = em.createQuery(jpql, Pokemon.class).setParameter("id", id).getResultList();
+		Pokemon pokemon= pokemonList.get(pokemonList.size()-1);
+		if (pokemon == null) {
+			return findPokemonById(id);
+		} else {
+			return pokemon;
+		}
+	}
 }

@@ -171,14 +171,14 @@ a:hover {
 										<div class="col">
 											<label for="hitpoint" class="form-label">Hit Points</label> <input
 												type="number" class="form-control" id="hitpoint" min="0"
-												name="hitpoint">
+												name="hitpoint"  required>
 										</div>
 									</div>
 									<div class="row mb-3">
 										<div class="col">
 											<label for="attack" class="form-label">Attack</label> <input
 												type="number" class="form-control" id="attack" min="0"
-												name="attack">
+												name="attack" required>
 										</div>
 
 										<div class="col-2"></div>
@@ -186,7 +186,7 @@ a:hover {
 										<div class="col">
 											<label for="specialAttack" class="form-label">Special
 												Attack</label> <input type="number" class="form-control"
-												id="specialAttack" min="0" name="specialAttack">
+												id="specialAttack" min="0" name="specialAttack" required>
 										</div>
 									</div>
 
@@ -194,7 +194,7 @@ a:hover {
 										<div class="col">
 											<label for="defense" class="form-label">Defense</label> <input
 												type="number" class="form-control" id="defense" min="0"
-												name="defense">
+												name="defense" required>
 										</div>
 
 										<div class="col-2"></div>
@@ -202,7 +202,7 @@ a:hover {
 										<div class="col">
 											<label for="specialDefense" class="form-label">Special
 												Attack</label> <input type="number" class="form-control"
-												id="specialDefense" min="0" name="specialDefense">
+												id="specialDefense" min="0" name="specialDefense" required>
 										</div>
 									</div>
 
@@ -210,7 +210,7 @@ a:hover {
 										<div class="col">
 											<label for="speed" class="form-label">Speed</label> <input
 												type="number" class="form-control" id="speed" min="0"
-												name="speed">
+												name="speed" required>
 										</div>
 
 										<div class="col-2"></div>

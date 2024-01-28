@@ -15,6 +15,9 @@ public interface PokemonStatsDAO {
 	
 	public Pokemon deletePokemonById(int id);
 	
+	public Pokemon findNextPokemon(int id);
+	public Pokemon findPreviousPokemon(int id);
+	
 	public Integer getMaxHitpoint();
 	public Integer getMaxAttack();
 	public Integer getMaxDefense();
