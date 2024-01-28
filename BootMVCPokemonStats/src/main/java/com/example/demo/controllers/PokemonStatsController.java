@@ -20,7 +20,7 @@ public class PokemonStatsController {
 	private PokemonStatsDAO pokeDAO;
 
 // HomePage control paths: find.do, collection.do, add.do, update.do, delete.do
-// find.do
+// find.do home.do
 	@RequestMapping(path = { "/", "home.do", "" }, method = RequestMethod.GET)
 	public String find(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
@@ -71,10 +71,10 @@ public class PokemonStatsController {
 
 // add.do
 	@RequestMapping(path = { "add.do" }, method = RequestMethod.GET)
-	public String add(Model model) {
+	public String add(Model model, @RequestParam("spriteIdHomeAdd") int spriteId) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
-
+		model.addAttribute("spriteIdHomeAdd", spriteId);
 		// control the state of the accordion
 		model.addAttribute("findPokemonBtn", "collapsed");
 		model.addAttribute("findPokemonShow", "");
@@ -206,9 +206,14 @@ public class PokemonStatsController {
 // updatePokemon control path
 // Update QUESTION AND FORM
 	@RequestMapping(path = { "updatePokemon.do" }, method = RequestMethod.GET)
-	public String updatePokemon(Model model, @RequestParam("id") int id) {
+	public String updatePokemon(Model model, @RequestParam("id") int id, @RequestParam("spriteIdFromList") int spriteIdFromList) {
 		Pokemon pokemon = pokeDAO.findPokemonById(id);
 		model.addAttribute("pokemon", pokemon);
+		if(spriteIdFromList==0&&pokemon!=null) {
+			model.addAttribute("spriteId", pokemon.getSpriteId());
+		}else {
+			model.addAttribute("spriteId", spriteIdFromList);
+		}
 		model.addAttribute("id", id);
 		model.addAttribute("showNAV", "updatePokemon");
 		return "showPokemon";
@@ -225,7 +230,6 @@ public class PokemonStatsController {
 	}
 
 // addPokemon control path
-// add QUESTIONS
 	@RequestMapping(path = { "addPokemon.do" }, method = RequestMethod.GET)
 	public String addPokemon(Pokemon p, Model model) {
 		int id = pokeDAO.addPokemon(p);
@@ -235,5 +239,17 @@ public class PokemonStatsController {
 		return "showPokemon";
 	}
 
+	// show Sprite Home Add
+	@RequestMapping(path = { "showSpriteHomeAdd.do" }, method = RequestMethod.GET)
+	public String showSpriteHomeAdd() {
+		return "spriteListHomeAdd";
+	}
+	
+	//show Sprite ShowPokemon Update
+	@RequestMapping(path = { "showSpriteShowPokeUpdate.do" }, method = RequestMethod.GET)
+	public String showSpriteShowPokeUpdate(Model model, @RequestParam("pokemonId") int pokemonId) {
+		model.addAttribute("pokemonId", pokemonId);
+		return "spriteListShowPokeUpdate";
+	}
 
 }

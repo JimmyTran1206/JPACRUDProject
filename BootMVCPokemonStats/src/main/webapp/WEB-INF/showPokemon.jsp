@@ -36,7 +36,7 @@ label {
 	<div class="container">
 		<c:choose>
 			<c:when test="${pokemon == null}">
-				<h1>Pokemon with ${id} not found.</h1>
+				<h1>Pokemon with id #${id} not found.</h1>
 				<c:if test="${showNAV=='showPokemon'}">
 					<nav>
 						<a href="home.do">Back to Find</a> <a href="collection.do">Back
@@ -91,7 +91,7 @@ label {
 				<c:if test="${showNAV=='showPokemon'}">
 					<nav>
 						<a href="home.do">Back to Find</a> <a href="collection.do">Back
-							to Collection</a> <a href="updatePokemon.do?id=${pokemon.id}">Update
+							to Collection</a> <a href="updatePokemon.do?id=${pokemon.id}&spriteIdFromList=${pokemon.spriteId}">Update
 							this Pokemon</a> <a href="deletePokemon.do?id=${pokemon.id}">Delete
 							this Pokemon</a>
 					</nav>
@@ -176,8 +176,13 @@ label {
 
 								<div class="col">
 									<label for="spriteId" class="form-label">Sprite Id</label> <input
-										type="number" class="form-control" id="spriteId" min ="1" max="1017"
-										name="spriteId" value="${pokemon.spriteId}">
+										type="number" class="form-control" id="spriteId" min="1"
+										max="1017" name="spriteId" value="${spriteId}">
+									<div id="spriteIdHelp" class="form-text"
+										style="font-size: 12px;">
+										<a href="showSpriteShowPokeUpdate.do?pokemonId=${pokemon.id}">Available Pokemon Sprites</a>
+									</div>
+
 								</div>
 							</div>
 							<div class="row mb-3">

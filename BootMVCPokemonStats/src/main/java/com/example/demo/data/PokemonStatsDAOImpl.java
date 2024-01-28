@@ -62,6 +62,18 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		String jpql = "SELECT MAX(pokemon.speed) FROM Pokemon pokemon";
 		return (Integer) em.createQuery(jpql, Integer.class).getSingleResult();
 	}
+	
+	@Override
+	public Integer getMaxId() {
+		String jpql = "SELECT MAX(pokemon.id) FROM Pokemon pokemon";
+		return (Integer) em.createQuery(jpql, Integer.class).getSingleResult();
+	}
+
+	@Override
+	public Integer getMinId() {
+		String jpql = "SELECT MIN(pokemon.id) FROM Pokemon pokemon";
+		return (Integer) em.createQuery(jpql, Integer.class).getSingleResult();
+	}
 
 	@Override
 	public Pokemon deletePokemonById(int id) {
@@ -93,6 +105,8 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 		em.flush();
 		return p.getId();
 	}
+
+
 
 
 }

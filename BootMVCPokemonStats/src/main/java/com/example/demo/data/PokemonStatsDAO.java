@@ -21,6 +21,9 @@ public interface PokemonStatsDAO {
 	public Integer getMaxSpecialAttack();
 	public Integer getMaxSpecialDefense();
 	public Integer getMaxSpeed();
+	public Integer getMaxId();
+	public Integer getMinId();
+	
 	
 	
 }
