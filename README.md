@@ -1,7 +1,8 @@
 ![](homeScreen.png)
 # JPACRUDProject
-## Project home page
-http://52.14.238.144:8080/BootMVCPokemonStats/
+## Project homepage
+Check the homepage of this project at: http://52.14.238.144:8080/BootMVCPokemonStats/
+
 This project has been deployed on AWS using Tomcat 10 as server. I sincerely invite you to check out this application.
 ![](showCharizard.png)
 
