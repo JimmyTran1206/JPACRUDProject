@@ -125,7 +125,7 @@ a:hover {
 	color: #c0a50c;
 }
 
-a#add-pokemon, form button {
+a#catch-pokemon, form button {
 	display: inline-block;
 	font-size: 20px;
 	text-decoration: none;
@@ -136,7 +136,7 @@ a#add-pokemon, form button {
 	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-a#add-pokemon:hover, form button:hover {
+a#catch-pokemon:hover, form button:hover {
 	background: linear-gradient(to right, #be2a56, #227ed4);
 	cursor: pointer;
 	position: relative;
@@ -145,7 +145,7 @@ a#add-pokemon:hover, form button:hover {
 	border: 0.5px solid blue;
 }
 
-a#add-pokemon:click, form button:click {
+a#catch-pokemon:click, form button:click {
 	position: static;
 }
 </style>
@@ -215,8 +215,8 @@ a#add-pokemon:click, form button:click {
 							<c:choose>
 								<c:when test="${empty strongestPokemon|| empty weakestPokemon}">
 									<h2>
-										There is no pokemon in your collection. Lets <a
-											id="catch-pokemon" href="add.do?spriteIdHomeAdd=1">catch-a
+										There is no pokemon in your collection. Let's <a
+											id="catch-pokemon" style="font-family: 'Pokemon Solid', sans-serif;" href="add.do?spriteIdHomeAdd=1">catch-a
 											pokemon</a>
 									</h2>
 								</c:when>
