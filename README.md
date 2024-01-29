@@ -1,4 +1,10 @@
+![](homeScreen.png)
 # JPACRUDProject
+## Project home page
+http://52.14.238.144:8080/BootMVCPokemonStats/
+This project has been deployed on AWS using Tomcat 10 as server. I sincerely invite you to check out this application.
+![](showCharizard.png)
+
 ## Description
 This is an application allowing users to Create, Retrieve, Update, and Delete (CRUD) Pokemons their favorite collection. 
 
@@ -17,11 +23,11 @@ This application has been running through many comprehensive stress test scenari
 
 ## Technology used
 - Frontend: Java JSP/ JSTL, HTML, CSS, and Bootstrap.
-- Backend: Java JPA, JPQL, String MVC, Boot, and MySQL.
+- Backend: Java JPA, JPQL, String MVC, Boot, Gradle and MySQL.
 
 This is a fullstack application. In the front end, Java JSP/ JSTL,  HTML, CSS, and Bootstrap are employed to make the page responsive with various device viewports.
 
-In the back end, Java Spring MVC, Boot, JPQL, and Hibernate are used to control the routes, the end points, and interact with the MySQL database, and JPA is used for Object-Relation-Mapping.
+In the back end, Java Spring MVC, Boot, JPQL, and Hibernate are used to control the routes, the end points, and interact with the MySQL database. JPA is used for Object-Relation-Mapping, and Gradle is used to manage libraries, drivers, frameworks, and dependencies.
 
 This application is built with responsiveness and user experience in mind. Many complicated routings and data transfers have been carefully handled by combinations of Java backend technology, most notably by Spring, Boot, and Hibernate, to ensure smoothness of connection, user data handling, and user experience.
 
@@ -31,4 +37,4 @@ Because of time limitation, the app may not be styled to look professional grade
 ## Lesson Learned
 Java backend frameworks make interaction with database and routing to different endpoints deceptively simple. However, as the library and packages aare being revised and updated every day, it is crucial to choose the right version and make the right set up for the project.
 
-In addition to that, there is no fixed ruleset on how the users would interact with the database. Thus, an application has to go through rigorous testing to limit the unhandled errors and exceptions. The last thing a developer want is a big 404 slapping in the user face and a big w-t-f coming back as a response.
+In addition to that, there is no fixed ruleset on how the users would interact with the database. Thus, an application has to go through a rigorous testing process to limit the unhandled errors and exceptions. I code a little, test a little on each functionality and apply various scenarios of stress tests on the final product to make sure every feature work as it should.
