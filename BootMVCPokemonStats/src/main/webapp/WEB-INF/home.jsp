@@ -87,7 +87,7 @@ a:hover {
 	<!-- The video -->
 	<div class="container">
 		<div class="row">
-			<h1>Greeting trainer, Welcome to Your Pokedex Info</h1>
+			<h1>Greeting trainer, welcome to your Pokedex Info</h1>
 		</div>
 		<div class="row">
 			<div class="accordion" id="accordionPokemon">
