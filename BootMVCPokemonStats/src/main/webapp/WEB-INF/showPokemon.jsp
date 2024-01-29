@@ -281,6 +281,11 @@ nav a:click, button:click {
 							</div>
 							<div class="row mb-3">
 								<div class="col">
+									<progress id="progress-bar" aria-label="Content loading…"></progress>
+								</div>
+							</div>
+							<div class="row mb-3">
+								<div class="col">
 									<label for="name" class="form-label">Pokemon name*</label> <input
 										type="text" class="form-control" id="name" name="name"
 										value="${pokemon.name}" required>

@@ -16,15 +16,62 @@
 	rel="stylesheet">
 
 <style>
-div.container {
+.container-main {
 	max-width: 1200px;
-	margin: 36px auto;
+	margin: 54px auto;
+}
+
+.container-main>.row {
+	margin: 20px;
+}
+/*Accordion styling */
+.accordion-button {
+	display: inline-block;
+	font-size: 20px;
+	text-decoration: none;
+	background: linear-gradient(to right, #227ed4, #be2a56);
+	border-radius: 20px;
+	border: 1px solid #408fde;
+	color: #ebb434;
+	font-family: 'Pokemon Solid', sans-serif;
+}
+
+.accordion-button:hover{
+background: linear-gradient(to right, #be2a56, #227ed4);
+	cursor: pointer;
+}
+
+.accordion-item {
+	margin: 15px;
+	border-radius: 20px;
+	padding: 0px;
+	background: rgb(63,94,251);
+background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+
+.accordion-header {
+	border-radius: 20px;
+	padding: 0px;
+}
+
+.accordion-body{
+border-radius: 20px;
+}
+
+
+/*Accordion styling  */
+div.form-container {
+	width: 60%;
 }
 
 h1, h2 {
-	font-family: 'Pokemon Solid', sans-serif;
 	color: #bf2517;
 	text-align: center;
+}
+
+form {
+	font-family: 'Pokemon Solid', sans-serif;
+	font-size: 20px;
 }
 
 div.row {
@@ -77,6 +124,30 @@ a {
 a:hover {
 	color: #c0a50c;
 }
+
+a#add-pokemon, form button {
+	display: inline-block;
+	font-size: 20px;
+	text-decoration: none;
+	background: linear-gradient(to right, #227ed4, #be2a56);
+	padding: 10px;
+	color: #ebb434;
+	border-radius: 6px;
+	box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+a#add-pokemon:hover, form button:hover {
+	background: linear-gradient(to right, #be2a56, #227ed4);
+	cursor: pointer;
+	position: relative;
+	top: -3px;
+	left: -3px;
+	border: 0.5px solid blue;
+}
+
+a#add-pokemon:click, form button:click {
+	position: static;
+}
 </style>
 </head>
 <body>
@@ -85,9 +156,10 @@ a:hover {
 		<source src="homeBackgroundVideo.mp4" type="video/mp4">
 	</video>
 	<!-- The video -->
-	<div class="container">
+	<div class="container container-main">
 		<div class="row">
-			<h1>Greeting trainer, welcome to your Pokedex Info</h1>
+			<h1>Greeting trainer, welcome to your <span style="font-family: 'Pokemon Solid', sans-serif;"
+			>Pokedex</span> Info</h1>
 		</div>
 		<div class="row">
 			<div class="accordion" id="accordionPokemon">
@@ -104,11 +176,24 @@ a:hover {
 						class="accordion-collapse collapse ${findPokemonShow}"
 						aria-labelledby="headingOne" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
-							<strong>Enter a pokemon id to find</strong>
-							<form action="showPokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required /> <input
-									type="submit" value="Show Pokemon" />
-							</form>
+							<div class="container form-container">
+								<form action="showPokemon.do" method="GET">
+									<div class="row" style="text-align: center;">
+										<div class="col">
+											<label for="findPokemonById" class="form-label">Pokemon
+												ID:</label>
+										</div>
+										<div class="col ">
+											<input type="number" class="form-control" name="id"
+												id="findPokemonById" required>
+										</div>
+										<div class="col ">
+											<button type="submit" class="btn btn-primary"
+												style="color: #ebb434;">Show Pokemon</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -131,7 +216,8 @@ a:hover {
 								<c:when test="${empty strongestPokemon|| empty weakestPokemon}">
 									<h2>
 										There is no pokemon in your collection. Lets <a
-											href=add.do?spriteIdHomeAdd=1>catch a pokemon</a>
+											id="catch-pokemon" href="add.do?spriteIdHomeAdd=1">catch-a
+											pokemon</a>
 									</h2>
 								</c:when>
 								<c:otherwise>
@@ -170,7 +256,6 @@ a:hover {
 						class="accordion-collapse collapse ${addPokemonShow}"
 						aria-labelledby="headingThree" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
-							<strong>Enter the pokemon details</strong>
 							<div class="container form-container">
 								<form action="addPokemon.do" method="GET">
 
@@ -182,8 +267,8 @@ a:hover {
 												max="1017" name="spriteId" required
 												value="${spriteIdHomeAdd}">
 											<div id="spriteIdHelp" class="form-text"
-												style="font-size: 12px;">
-												<a href="showSpriteHomeAdd.do">🌪️🦄Lets catch a
+												style="font-size: 14px;">
+												<a href="showSpriteHomeAdd.do" style="font-family: Aria, san-serifs; font-weight:600; color: yellow;">🌪️🦄Lets catch a
 													pokemon🌊🐟</a>
 											</div>
 										</div>
@@ -244,10 +329,11 @@ a:hover {
 										</div>
 
 									</div>
-									<div class="row mb-3">
+									<div class="row m-3" style="text-align: center;">
 										<div class="col">
 											<button type="submit" class="btn btn-primary"
-												style="font-size: 20px">Add Pokemon to collection</button>
+												style="font-size: 20px; color: #ebb434; padding: 10px;">Add
+												Pokemon to collection</button>
 
 										</div>
 									</div>
@@ -270,13 +356,26 @@ a:hover {
 						class="accordion-collapse collapse ${updatePokemonShow}"
 						aria-labelledby="headingFour" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
-							<strong>Enter a pokemon id to update</strong>
-							<form action="updatePokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required /> <input
-									type="number" name="spriteIdFromList" value="0"
-									style="display: none;" /> <input type="submit"
-									value="Update Pokemon" />
-							</form>
+							<div class="container form-container">
+								<form action="updatePokemon.do" method="GET">
+									<div class="row" style="text-align: center;">
+										<div class="col">
+											<label for="updatePokemonById" class="form-label">Pokemon
+												ID:</label>
+										</div>
+										<div class="col ">
+											<input type="number" class="form-control" name="id"
+												id="updatePokemonById" required> <input
+												type="number" class="form-control" name="spriteIdFromList"
+												value="0" style="display: none;" />
+										</div>
+										<div class="col ">
+											<button type="submit" class="btn btn-primary"
+												style="color: #ebb434;">Update Pokemon</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -294,16 +393,28 @@ a:hover {
 						class="accordion-collapse collapse ${deletePokemonShow}"
 						aria-labelledby="headingFive" data-bs-parent="#accordionPokemon">
 						<div class="accordion-body">
-							<strong>Enter a pokemon id for deletion</strong>
-							<form action="deletePokemon.do" method="GET">
-								Pokemon ID: <input type="number" name="id" required /> <input
-									type="submit" value="Delete Pokemon" />
-							</form>
-
+							<div class="container form-container">
+								<form action="deletePokemon.do" method="GET">
+									<div class="row" style="text-align: center;">
+										<div class="col">
+											<label for="deletePokemonById" class="form-label">Pokemon
+												ID:</label>
+										</div>
+										<div class="col ">
+											<input type="number" class="form-control" name="id"
+												id="deletePokemonById" required>
+										</div>
+										<div class="col ">
+											<button type="submit" class="btn btn-primary"
+												style="color: #ebb434;">Delete Pokemon</button>
+										</div>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- Accordion END Create all Pokemon by ID -->
+				<!-- Accordion END Delete a Pokemon by ID -->
 
 
 			</div>
