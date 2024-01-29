@@ -16,11 +16,14 @@ This is an application allowing users to Create, Retrieve, Update, and Delete (C
 This application has been running through many comprehensive stress test scenarios, such as boundary data and empty dataset, to ensure the smoothness in user experience. Emerge yourself through a discovery journey that is only limited by your immagination.
 
 ## Technology used
-This is a fullstack application. In the front end, Java JSP,  HTML, CSS, and Bootstrap are employed to make the page responsive with various device viewports.
+- Frontend: Java JSP/ JSTL, HTML, CSS, and Bootstrap.
+- Backend: Java JPA, JPQL, String MVC, Boot, and MySQL.
+
+This is a fullstack application. In the front end, Java JSP/ JSTL,  HTML, CSS, and Bootstrap are employed to make the page responsive with various device viewports.
 
 In the back end, Java Spring MVC, Boot, JPQL, and Hibernate are used to control the routes, the end points, and interact with the MySQL database, and JPA is used for Object-Relation-Mapping.
 
-This application is built with responsiveness and user experience in mind. Tens of complicated routing and data transferred has been handled by combinations of Java backend technology, most notably by Spring, Boot, and Hiibernate, to ensure smoothness of connection, database handling, and user experience.
+This application is built with responsiveness and user experience in mind. Many complicated routings and data transfers have been carefully handled by combinations of Java backend technology, most notably by Spring, Boot, and Hibernate, to ensure smoothness of connection, user data handling, and user experience.
 
 ## Limitation
 Because of time limitation, the app may not be styled to look professional grade. However, all the basic concepts of CRUD has been met through rigorous implementations and testinngs. Some expanding features, such as finding and retrieving a list of pokemon, expanding pokemon dataset and attributes, and making the pokemon evolution tree, are subjected for future development.
