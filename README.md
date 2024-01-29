@@ -23,10 +23,10 @@ This is an application allowing users to Create, Retrieve, Update, and Delete (C
 This application has been running through many comprehensive stress test scenarios, such as boundary data and empty dataset, to ensure the smoothness in user experience. Emerge yourself through a discovery journey that is only limited by your immagination.
 
 ## Technology used
-### Frontend: 
+### Frontend
 - Java JSP/ JSTL
 - HTML, CSS, Bootstrap.
-### Backend:
+### Backend
 - Java JPA
 - Java JPQL
 - Spring MVC and Boot
