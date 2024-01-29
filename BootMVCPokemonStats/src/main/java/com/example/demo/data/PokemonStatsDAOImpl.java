@@ -137,7 +137,7 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 				+ " = (SELECT MAX(pokemon.hitpoint + pokemon.attack + pokemon.defense "
 				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed) " + " FROM Pokemon pokemon)";
 		try {
-			return em.createQuery(jpql, Pokemon.class).getSingleResult();
+			return em.createQuery(jpql, Pokemon.class).getResultList().get(0);
 		} catch (Exception e) {
 			return null;
 		}
@@ -151,7 +151,7 @@ public class PokemonStatsDAOImpl implements PokemonStatsDAO {
 				+ " = (SELECT MIN(pokemon.hitpoint + pokemon.attack + pokemon.defense "
 				+ " + pokemon.specialAttack + pokemon.specialDefense+ pokemon.speed) " + " FROM Pokemon pokemon)";
 		try {
-			return em.createQuery(jpql, Pokemon.class).getSingleResult();
+			return em.createQuery(jpql, Pokemon.class).getResultList().get(0);
 		} catch (Exception e) {
 			return null;
 		}

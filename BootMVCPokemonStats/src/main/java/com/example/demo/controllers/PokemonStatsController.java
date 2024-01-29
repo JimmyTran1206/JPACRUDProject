@@ -21,7 +21,7 @@ public class PokemonStatsController {
 
 // HomePage control paths: find.do, collection.do, add.do, update.do, delete.do
 // find.do home.do
-	@RequestMapping(path = { "/", "home.do", "" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "home.do", "find.do" }, method = RequestMethod.GET)
 	public String find(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);
@@ -49,7 +49,7 @@ public class PokemonStatsController {
 	}
 
 // collection.do
-	@RequestMapping(path = { "collection.do" }, method = RequestMethod.GET)
+	@RequestMapping(path = { "collection.do","","/" }, method = RequestMethod.GET)
 	public String collection(Model model) {
 		List<Pokemon> pokemonList = pokeDAO.findAllPokemon();
 		model.addAttribute("pokemonList", pokemonList);

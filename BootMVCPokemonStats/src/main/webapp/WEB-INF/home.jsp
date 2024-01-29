@@ -17,13 +17,13 @@
 
 <style>
 div.container {
-	max-width: 800px;
+	max-width: 1200px;
 	margin: 36px auto;
 }
 
 h1, h2 {
 	font-family: 'Pokemon Solid', sans-serif;
-	color: #c0a50c;
+	color: #bf2517;
 	text-align: center;
 }
 
@@ -41,20 +41,21 @@ div.row {
 	top: 0;
 	bottom: 0;
 	z-index: -1;
-	opacity: 0.5;
+	opacity: 0.8;
 }
 
 ul {
 	list-style-type: none;
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
 	flex-wrap: wrap;
 }
 
 li {
 	margin: 2px;
-	padding: 2px;
-	border-radius: 3px;
+	padding: 5px;
+	border-radius: 5px;
 	background: linear-gradient(to right, #3b9928, #26bd08);
 	box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -86,7 +87,7 @@ a:hover {
 	<!-- The video -->
 	<div class="container">
 		<div class="row">
-			<h1>Welcome to Your Pokedex Info</h1>
+			<h1>Greeting trainer, Welcome to Your Pokedex Info</h1>
 		</div>
 		<div class="row">
 			<div class="accordion" id="accordionPokemon">
@@ -127,7 +128,7 @@ a:hover {
 						<div class="accordion-body">
 
 							<c:choose>
-								<c:when test="${strongestPokemon==null||weakestPokemon==null}">
+								<c:when test="${empty strongestPokemon|| empty weakestPokemon}">
 									<h2>
 										There is no pokemon in your collection. Lets <a
 											href=add.do?spriteIdHomeAdd=1>catch a pokemon</a>
@@ -139,7 +140,7 @@ a:hover {
 											width="50px"><a
 											href="showPokemon.do?id=${strongestPokemon.id}">Strongest
 												Pokemon</a></li>
-										<li id="weakesk-pokemon"><img src="questionMark.jpg"
+										<li id="weakest-pokemon"><img src="questionMark.jpg"
 											width="50px"><a
 											href="showPokemon.do?id=${weakestPokemon.id}">Weakest
 												Pokemon</a></li>
@@ -151,9 +152,6 @@ a:hover {
 									</ul>
 								</c:otherwise>
 							</c:choose>
-
-
-
 
 						</div>
 					</div>
@@ -185,7 +183,7 @@ a:hover {
 												value="${spriteIdHomeAdd}">
 											<div id="spriteIdHelp" class="form-text"
 												style="font-size: 12px;">
-												<a href="showSpriteHomeAdd.do">🌪️🐉Lets catch a
+												<a href="showSpriteHomeAdd.do">🌪️🦄Lets catch a
 													pokemon🌊🐟</a>
 											</div>
 										</div>
@@ -225,7 +223,7 @@ a:hover {
 
 										<div class="col">
 											<label for="specialDefense" class="form-label">Special
-												Attack</label> <input type="number" class="form-control"
+												Defense</label> <input type="number" class="form-control"
 												id="specialDefense" min="0" name="specialDefense" required>
 										</div>
 									</div>
