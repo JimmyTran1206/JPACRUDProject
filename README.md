@@ -7,7 +7,7 @@ This project has been deployed on AWS using Tomcat 10 as server. I sincerely inv
 ![](showCharizard.png)
 
 ## Description
-This is an application allowing users to Create, Retrieve, Update, and Delete (CRUD) Pokemons their favorite collection. 
+This is an application allowing users to Create, Retrieve, Update, and Delete (CRUD) Pokemons to create their favorite collection. 
 
 - Users can view a cool collection of all the pokemon of their choice all in once place, including the strongest and the weakest in the set. The colletion is auto updated as new pokemon is added.
 ![](welcomeScreen.png)
@@ -23,8 +23,15 @@ This is an application allowing users to Create, Retrieve, Update, and Delete (C
 This application has been running through many comprehensive stress test scenarios, such as boundary data and empty dataset, to ensure the smoothness in user experience. Emerge yourself through a discovery journey that is only limited by your immagination.
 
 ## Technology used
-- Frontend: Java JSP/ JSTL, HTML, CSS, and Bootstrap.
-- Backend: Java JPA, JPQL, String MVC, Boot, Gradle and MySQL.
+### Frontend: 
+- Java JSP/ JSTL
+- HTML, CSS, Bootstrap.
+### Backend:
+- Java JPA
+- Java JPQL
+- Spring MVC and Boot
+- Gradle
+- MySQL.
 
 This is a fullstack application. In the front end, Java JSP/ JSTL,  HTML, CSS, and Bootstrap are employed to make the page responsive with various device viewports.
 
