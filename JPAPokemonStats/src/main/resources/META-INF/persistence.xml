@@ -16,9 +16,9 @@
 			<property name="jakarta.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/PokedexDB" />
 			<property name="jakarta.persistence.jdbc.user"
-				value="student" />
+				value="pokemon" />
 			<property name="jakarta.persistence.jdbc.password"
-				value="student" />
+				value="pokemon" />
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />
 
